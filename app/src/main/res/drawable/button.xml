@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <!--
+        shape的形状：默认是矩形，但是我们可以进行设置，可以设置为矩形（rectangle）、椭圆形(oval)、线性形状(line)、环形(ring)
+        -->
+        <shape android:shape="rectangle">
+            <!--这是按钮的填充色-->
+            <!--<solid android:color="#f5f5f5"/>-->
+            <solid android:color="#cccccc"/>
+            <!--边的设置，就是我们样式的边框-->
+            <stroke android:width="0.2dp"
+                    android:color="#cfcfd2"/>
+            <!--内边距-->
+            <padding android:top="1dp"/>
+        </shape>
+    </item>
+
+    <item >
+        <shape android:shape="rectangle">
+            <solid android:color="#fff"/>
+            <stroke android:width="0.2dp"
+                    android:color="#cfcfd2"/>
+            <padding android:top="1dp"/>
+        </shape>
+    </item>
+</selector>
+
