@@ -9,6 +9,7 @@ import android.widget.SimpleAdapter;
 
 import com.example.yuan.lifehelper.adapter.MyAdapter;
 import com.example.yuan.lifehelper.R;
+import com.example.yuan.lifehelper.bean.DataBean;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +19,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity
 {
 
-    private List<String> dataList = new ArrayList<>();
+    private List<DataBean> dataList = new ArrayList<>();
     private RecyclerView recyclerView;
 
     @Override
@@ -47,10 +48,17 @@ public class MainActivity extends AppCompatActivity
 
     public void getData()
     {
-        for (int i = 0; i < 7; i++)
+        dataList.add(new DataBean(R.drawable.ic_launcher,"手机号码查询"));
+        dataList.add(new DataBean(R.drawable.ic_launcher,"身份证查询"));
+        dataList.add(new DataBean(R.drawable.ic_launcher,"火车票查询"));
+        dataList.add(new DataBean(R.drawable.ic_launcher,"IP查询"));
+        dataList.add(new DataBean(R.drawable.ic_launcher,"银行卡信息查询"));
+        dataList.add(new DataBean(R.drawable.ic_launcher,"邮编查询"));
+
+//        for (int i = 0; i < 7; i++)
         {
 
-            dataList.add("item" + i);
+//            dataList.add("item" + i);
         }
     }
 }
