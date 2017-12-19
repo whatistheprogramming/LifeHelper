@@ -7,24 +7,27 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/et_input_phone"
-        android:digits="0123456789"
+        android:id="@+id/ed_idcard"
+        android:digits="0123456789Xx"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <!--
+     android:digits="0123456789Xx"设置只能输入数字、x或X
+    -->
 
     <Button
-        android:id="@+id/btn_queryphone"
+        android:id="@+id/btn_queryidcard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="查询"
         />
+
 
     <TextView
         android:id="@+id/show_text"
         android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-
 
 
 </LinearLayout>

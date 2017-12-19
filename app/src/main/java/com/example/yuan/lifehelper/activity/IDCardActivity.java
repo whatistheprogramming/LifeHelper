@@ -11,10 +11,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yuan.lifehelper.R;
+import com.example.yuan.lifehelper.bean.IDCardBean;
 import com.example.yuan.lifehelper.bean.PhoneBean;
-import com.example.yuan.lifehelper.http.API.PhoneApi;
+import com.example.yuan.lifehelper.http.API.IDCardApi;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -25,42 +25,50 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.yuan.lifehelper.activity.MainActivity.KEY;
 
-public class PhoneActivity extends AppCompatActivity
+public class IDCardActivity extends AppCompatActivity
 {
-    private static final String TAG = "PhoneActivity";
-    private EditText inputPhone;
-    private Button sendPhone;
+    private static final String TAG = "IDCardActivity";
+    private EditText inputIDCard;
+    private Button sendNum;
     private TextView showText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_phone);
+        setContentView(R.layout.activity_idcard);
 
-        setTitle("手机号查询");
-        inputPhone = (EditText) findViewById(R.id.et_input_phone);
-        sendPhone = (Button) findViewById(R.id.btn_queryphone);
+        setTitle("身份证查询");
+        inputIDCard = (EditText) findViewById(R.id.ed_idcard);
+        sendNum = (Button) findViewById(R.id.btn_queryidcard);
         showText = (TextView) findViewById(R.id.show_text);
 
 
-        sendPhone.setOnClickListener(new View.OnClickListener()
+        sendNum.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-
-                String inputText = inputPhone.getText().toString();
+                String inputText = inputIDCard.getText().toString();
                 if(isOk(inputText))
                 {
                     getData();
                 }
                 else
                 {
-                    Toast.makeText(PhoneActivity.this, "手机号码不正确，请检查", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(IDCardActivity.this, "身份证号码不正确，请检查", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    private boolean isOk(String inputText)
+    {
+        if (!TextUtils.isEmpty(inputText)&&!inputText.contains(" ")&&inputText.length()==18)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void getData()
@@ -74,18 +82,18 @@ public class PhoneActivity extends AppCompatActivity
                 .build();
 
         //创建网络请求接口实例
-        PhoneApi request = retrofit.create(PhoneApi.class);
+        IDCardApi request = retrofit.create(IDCardApi.class);
 
-        String phone = inputPhone.getText().toString();
+        String idNum = inputIDCard.getText().toString();
 
         //RxJava实现请求
-        request.getPhone(KEY, phone)
+        request.getPhone(KEY, idNum)
                 //数据通过rxjava提交先在io线程里
                 .subscribeOn(Schedulers.io())
                 //返回到主线程
                 .observeOn(AndroidSchedulers.mainThread())
                 //通过subscribe实现订阅关系
-                .subscribe(new Observer<PhoneBean>()
+                .subscribe(new Observer<IDCardBean>()
                 {
                     @Override
                     public void onSubscribe(Disposable d)
@@ -94,45 +102,36 @@ public class PhoneActivity extends AppCompatActivity
                     }
 
                     @Override
-                    public void onNext(PhoneBean value)
+                    public void onNext(IDCardBean value)
                     {
                         if (!"success".equals(value.getMsg()))
                         {
-                            Toast.makeText(PhoneActivity.this, "查询失败", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(IDCardActivity.this, "查询失败", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        Log.d(TAG, "city="+value.getResult().getCity());
-                        String builder=
-                                        value.getResult().getProvince()+"\n"+
-                                        value.getResult().getCity()+"\n"+
-                                        value.getResult().getOperator()+"\n"+
-                                        value.getResult().getCityCode()+"\n"+
-                                        value.getResult().getMobileNumber()+"\n"+
-                                        value.getResult().getZipCode();
+                        Log.d(TAG, "area=" + value.getResult().getArea());
 
+                        String builder = value.getResult().getArea() + "\n" +
+                                value.getResult().getBirthday() + "\n" +
+                                value.getResult().getSex();
                         showText.setText(builder);
+
                     }
 
                     @Override
                     public void onError(Throwable e)
                     {
+
                     }
 
                     @Override
                     public void onComplete()
                     {
-
                     }
-                });
+                })  ;
+
 
     }
 
-    private boolean isOk(String inputText)
-    {
-        if (!TextUtils.isEmpty(inputText)&&!inputText.contains(" ")&&inputText.length()==11)
-        {
-            return true;
-        }
-        return false;
-    }
+
 }

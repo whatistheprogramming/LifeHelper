@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yuan.lifehelper.R;
+import com.example.yuan.lifehelper.activity.IDCardActivity;
 import com.example.yuan.lifehelper.activity.PhoneActivity;
 import com.example.yuan.lifehelper.bean.DataBean;
 
@@ -60,7 +61,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
                        mContext.startActivity(intent);
                        break;
                    case 1:
-                       intent = new Intent(mContext, PhoneActivity.class);
+                       intent = new Intent(mContext, IDCardActivity.class);
                        mContext.startActivity(intent);
                        break;
                    default:

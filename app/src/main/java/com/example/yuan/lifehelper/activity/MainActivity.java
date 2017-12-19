@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity
     private List<DataBean> dataList = new ArrayList<>();
     private RecyclerView recyclerView;
 
+    public static final String KEY = "2327e5fc4a8c8";
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
