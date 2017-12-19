@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.yuan.lifehelper.R;
 import com.example.yuan.lifehelper.activity.BankActivity;
 import com.example.yuan.lifehelper.activity.CalendarActivity;
+import com.example.yuan.lifehelper.activity.FlightActivity;
 import com.example.yuan.lifehelper.activity.IDCardActivity;
 import com.example.yuan.lifehelper.activity.IPActivity;
 import com.example.yuan.lifehelper.activity.PhoneActivity;
@@ -87,6 +88,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
                        break;
                    case 6:
                        intent = new Intent(mContext, CalendarActivity.class);
+                       mContext.startActivity(intent);
+                       break;
+                   case 7:
+                       intent = new Intent(mContext, FlightActivity.class);
                        mContext.startActivity(intent);
                        break;
                    default:

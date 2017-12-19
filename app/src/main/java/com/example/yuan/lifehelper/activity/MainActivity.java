@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity
         dataList.add(new DataBean(R.drawable.ic_bank,"银行卡信息查询"));
         dataList.add(new DataBean(R.drawable.ic_post,"邮编查询"));
         dataList.add(new DataBean(R.drawable.ic_calendar,"万年历"));
+        dataList.add(new DataBean(R.drawable.ic_flight,"航班号查询"));
 
     }
 }

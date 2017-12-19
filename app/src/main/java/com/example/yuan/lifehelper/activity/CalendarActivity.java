@@ -35,6 +35,8 @@ public class CalendarActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
+        setTitle("万年历");
+
         datePicker = (DatePicker) findViewById(R.id.date_picker);
         showText = (TextView) findViewById(R.id.show_text);
 

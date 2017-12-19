@@ -26,6 +26,7 @@
         <TextView
             android:id="@+id/show_text"
             android:layout_marginLeft="10dp"
+            android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </ScrollView>
