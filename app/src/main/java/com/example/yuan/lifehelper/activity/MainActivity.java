@@ -51,12 +51,12 @@ public class MainActivity extends AppCompatActivity
 
     public void getData()
     {
-        dataList.add(new DataBean(R.drawable.ic_launcher,"手机号码查询"));
-        dataList.add(new DataBean(R.drawable.ic_launcher,"身份证查询"));
-        dataList.add(new DataBean(R.drawable.ic_launcher,"火车票查询"));
-        dataList.add(new DataBean(R.drawable.ic_launcher,"IP查询"));
-        dataList.add(new DataBean(R.drawable.ic_launcher,"银行卡信息查询"));
-        dataList.add(new DataBean(R.drawable.ic_launcher,"邮编查询"));
+        dataList.add(new DataBean(R.drawable.ic_phone,"手机号码查询"));
+        dataList.add(new DataBean(R.drawable.ic_card2,"身份证查询"));
+        dataList.add(new DataBean(R.drawable.ic_train2,"火车票查询"));
+        dataList.add(new DataBean(R.drawable.ic_ip,"IP查询"));
+        dataList.add(new DataBean(R.drawable.ic_bank,"银行卡信息查询"));
+        dataList.add(new DataBean(R.drawable.ic_post,"邮编查询"));
 
     }
 }
