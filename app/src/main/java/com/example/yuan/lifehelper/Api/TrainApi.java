@@ -1,6 +1,5 @@
-package com.example.yuan.lifehelper.http.API;
+package com.example.yuan.lifehelper.Api;
 
-import com.example.yuan.lifehelper.bean.PostcodeBean;
 import com.example.yuan.lifehelper.bean.TrainBean;
 
 import io.reactivex.Observable;

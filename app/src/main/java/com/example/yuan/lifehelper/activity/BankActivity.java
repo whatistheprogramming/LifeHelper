@@ -3,7 +3,6 @@ package com.example.yuan.lifehelper.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,9 +11,7 @@ import android.widget.Toast;
 
 import com.example.yuan.lifehelper.R;
 import com.example.yuan.lifehelper.bean.BankBean;
-import com.example.yuan.lifehelper.bean.IDCardBean;
-import com.example.yuan.lifehelper.http.API.BankApi;
-import com.example.yuan.lifehelper.http.API.IDCardApi;
+import com.example.yuan.lifehelper.Api.BankApi;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import io.reactivex.Observer;

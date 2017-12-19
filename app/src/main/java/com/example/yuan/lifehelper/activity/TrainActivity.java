@@ -11,10 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yuan.lifehelper.R;
-import com.example.yuan.lifehelper.bean.PostcodeBean;
 import com.example.yuan.lifehelper.bean.TrainBean;
-import com.example.yuan.lifehelper.http.API.PostcodeApi;
-import com.example.yuan.lifehelper.http.API.TrainApi;
+import com.example.yuan.lifehelper.Api.TrainApi;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import io.reactivex.Observer;

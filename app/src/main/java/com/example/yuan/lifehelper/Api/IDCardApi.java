@@ -1,7 +1,6 @@
-package com.example.yuan.lifehelper.http.API;
+package com.example.yuan.lifehelper.Api;
 
 import com.example.yuan.lifehelper.bean.IDCardBean;
-import com.example.yuan.lifehelper.bean.PhoneBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

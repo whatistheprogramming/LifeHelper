@@ -12,9 +12,7 @@ import android.widget.Toast;
 
 import com.example.yuan.lifehelper.R;
 import com.example.yuan.lifehelper.bean.IPBean;
-import com.example.yuan.lifehelper.bean.PhoneBean;
-import com.example.yuan.lifehelper.http.API.IPApi;
-import com.example.yuan.lifehelper.http.API.PhoneApi;
+import com.example.yuan.lifehelper.Api.IPApi;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import io.reactivex.Observer;
