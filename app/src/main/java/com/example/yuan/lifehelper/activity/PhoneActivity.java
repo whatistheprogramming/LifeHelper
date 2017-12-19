@@ -105,10 +105,10 @@ public class PhoneActivity extends AppCompatActivity
                         String builder=
                                         value.getResult().getProvince()+"\n"+
                                         value.getResult().getCity()+"\n"+
-                                        value.getResult().getOperator()+"\n"+
+                                        "运营商信息："+value.getResult().getOperator()+"\n"+
                                         value.getResult().getCityCode()+"\n"+
                                         value.getResult().getMobileNumber()+"\n"+
-                                        value.getResult().getZipCode();
+                                        "邮编："+value.getResult().getZipCode();
 
                         showText.setText(builder);
                     }

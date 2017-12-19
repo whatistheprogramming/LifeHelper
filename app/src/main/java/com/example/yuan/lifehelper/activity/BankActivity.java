@@ -11,8 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yuan.lifehelper.R;
+import com.example.yuan.lifehelper.bean.BankBean;
 import com.example.yuan.lifehelper.bean.IDCardBean;
-import com.example.yuan.lifehelper.bean.PhoneBean;
+import com.example.yuan.lifehelper.http.API.BankApi;
 import com.example.yuan.lifehelper.http.API.IDCardApi;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
@@ -25,38 +26,39 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.yuan.lifehelper.activity.MainActivity.KEY;
 
-public class IDCardActivity extends AppCompatActivity
+public class BankActivity extends AppCompatActivity
 {
-    private static final String TAG = "IDCardActivity";
-    private EditText inputIDCard;
-    private Button sendNum;
+
+    private static final String TAG = "BankActivity";
+    private EditText inputBank;
+    private Button sendBank;
     private TextView showText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_idcard);
+        setContentView(R.layout.activity_bank);
 
-        setTitle("身份证查询");
-        inputIDCard = (EditText) findViewById(R.id.ed_idcard);
-        sendNum = (Button) findViewById(R.id.btn_queryidcard);
+        setTitle("银行卡类别查询");
+        inputBank = (EditText) findViewById(R.id.ed_bank);
+        sendBank = (Button) findViewById(R.id.btn_querybank);
         showText = (TextView) findViewById(R.id.show_text);
 
 
-        sendNum.setOnClickListener(new View.OnClickListener()
+        sendBank.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                String inputText = inputIDCard.getText().toString();
+                String inputText = inputBank.getText().toString();
                 if(isOk(inputText))
                 {
                     getData();
                 }
                 else
                 {
-                    Toast.makeText(IDCardActivity.this, "身份证号码不正确，请检查", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BankActivity.this, "号码不正确，请检查", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -64,7 +66,7 @@ public class IDCardActivity extends AppCompatActivity
 
     private boolean isOk(String inputText)
     {
-        if (!TextUtils.isEmpty(inputText) && !inputText.contains(" ") && (inputText.length() == 18 || inputText.length() == 15))
+        if (!TextUtils.isEmpty(inputText) && !inputText.contains(" ") )
         {
             return true;
         }
@@ -82,9 +84,9 @@ public class IDCardActivity extends AppCompatActivity
                 .build();
 
         //创建网络请求接口实例
-        IDCardApi request = retrofit.create(IDCardApi.class);
+        BankApi request = retrofit.create(BankApi.class);
 
-        String idNum = inputIDCard.getText().toString();
+        String idNum = inputBank.getText().toString();
 
         //RxJava实现请求
         request.getPhone(KEY, idNum)
@@ -93,7 +95,7 @@ public class IDCardActivity extends AppCompatActivity
                 //返回到主线程
                 .observeOn(AndroidSchedulers.mainThread())
                 //通过subscribe实现订阅关系
-                .subscribe(new Observer<IDCardBean>()
+                .subscribe(new Observer<BankBean>()
                 {
                     @Override
                     public void onSubscribe(Disposable d)
@@ -102,18 +104,30 @@ public class IDCardActivity extends AppCompatActivity
                     }
 
                     @Override
-                    public void onNext(IDCardBean value)
+                    public void onNext(BankBean value)
                     {
                         if (!"success".equals(value.getMsg()))
                         {
-                            Toast.makeText(IDCardActivity.this, "查询失败", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(BankActivity.this, "查询失败", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        Log.d(TAG, "area=" + value.getResult().getArea());
+//                        Log.d(TAG, "area=" + value.getResult().getArea());
 
-                        String builder = value.getResult().getArea() + "\n" +
-                                value.getResult().getBirthday() + "\n" +
-                                value.getResult().getSex();
+                        /**
+                         * bank : 农业银行
+                         * bin : 622848
+                         * binNumber : 6
+                         * cardName : 金穗通宝卡(银联卡)
+                         * cardNumber : 19
+                         * cardType : 借记卡
+                         */
+
+                        String builder = "所属银行：" + value.getResult().getBank() + "\n" +
+                                "bin码：" + value.getResult().getBin() + "\n" +
+                                "bin码长度：" + value.getResult().getBinNumber() + "\n" +
+                                "卡名：" + value.getResult().getCardName() + "\n" +
+                                "卡号长度：" + value.getResult().getCardNumber() + "\n" +
+                                "卡片类型：" + value.getResult().getCardType();
                         showText.setText(builder);
 
                     }
@@ -132,6 +146,5 @@ public class IDCardActivity extends AppCompatActivity
 
 
     }
-
 
 }

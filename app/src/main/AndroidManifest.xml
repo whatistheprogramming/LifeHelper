@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.yuan.lifehelper">
+
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,6 +21,14 @@
         <activity android:name=".activity.PhoneActivity">
         </activity>
         <activity android:name=".activity.IDCardActivity">
+        </activity>
+        <activity android:name=".activity.PostcodeActivity">
+        </activity>
+        <activity android:name=".activity.TrainActivity">
+        </activity>
+        <activity android:name=".activity.IPActivity">
+        </activity>
+        <activity android:name=".activity.BankActivity">
         </activity>
     </application>
 

@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView recyclerView;
 
     public static final String KEY = "2327e5fc4a8c8";
+    public static final String SECRET = "64c55e0e5c7dc3b80cf0852387bbe380";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -57,10 +58,5 @@ public class MainActivity extends AppCompatActivity
         dataList.add(new DataBean(R.drawable.ic_launcher,"银行卡信息查询"));
         dataList.add(new DataBean(R.drawable.ic_launcher,"邮编查询"));
 
-//        for (int i = 0; i < 7; i++)
-        {
-
-//            dataList.add("item" + i);
-        }
     }
 }

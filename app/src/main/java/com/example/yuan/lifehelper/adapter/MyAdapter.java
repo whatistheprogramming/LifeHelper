@@ -11,8 +11,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yuan.lifehelper.R;
+import com.example.yuan.lifehelper.activity.BankActivity;
 import com.example.yuan.lifehelper.activity.IDCardActivity;
+import com.example.yuan.lifehelper.activity.IPActivity;
 import com.example.yuan.lifehelper.activity.PhoneActivity;
+import com.example.yuan.lifehelper.activity.PostcodeActivity;
+import com.example.yuan.lifehelper.activity.TrainActivity;
 import com.example.yuan.lifehelper.bean.DataBean;
 
 import java.util.List;
@@ -62,6 +66,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
                        break;
                    case 1:
                        intent = new Intent(mContext, IDCardActivity.class);
+                       mContext.startActivity(intent);
+                       break;
+                   case 2:
+                       intent = new Intent(mContext, TrainActivity.class);
+                       mContext.startActivity(intent);
+                       break;
+                   case 3:
+                       intent = new Intent(mContext, IPActivity.class);
+                       mContext.startActivity(intent);
+                       break;
+                   case 4:
+                       intent = new Intent(mContext, BankActivity.class);
+                       mContext.startActivity(intent);
+                       break;
+                   case 5:
+                       intent = new Intent(mContext, PostcodeActivity.class);
                        mContext.startActivity(intent);
                        break;
                    default:

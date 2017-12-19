@@ -11,9 +11,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yuan.lifehelper.R;
-import com.example.yuan.lifehelper.bean.IDCardBean;
 import com.example.yuan.lifehelper.bean.PhoneBean;
-import com.example.yuan.lifehelper.http.API.IDCardApi;
+import com.example.yuan.lifehelper.bean.PostcodeBean;
+import com.example.yuan.lifehelper.http.API.PhoneApi;
+import com.example.yuan.lifehelper.http.API.PostcodeApi;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import io.reactivex.Observer;
@@ -25,50 +26,41 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.yuan.lifehelper.activity.MainActivity.KEY;
 
-public class IDCardActivity extends AppCompatActivity
+public class PostcodeActivity extends AppCompatActivity
 {
-    private static final String TAG = "IDCardActivity";
-    private EditText inputIDCard;
-    private Button sendNum;
+    private static final String TAG = "PostcodeActivity";
+    private EditText inputCode;
+    private Button sendCode;
     private TextView showText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_idcard);
+        setContentView(R.layout.activity_postcode);
 
-        setTitle("身份证查询");
-        inputIDCard = (EditText) findViewById(R.id.ed_idcard);
-        sendNum = (Button) findViewById(R.id.btn_queryidcard);
+        setTitle("邮编查询");
+        inputCode = (EditText) findViewById(R.id.et_input_code);
+        sendCode = (Button) findViewById(R.id.btn_querycode);
         showText = (TextView) findViewById(R.id.show_text);
 
-
-        sendNum.setOnClickListener(new View.OnClickListener()
+        sendCode.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                String inputText = inputIDCard.getText().toString();
+
+                String inputText = inputCode.getText().toString();
                 if(isOk(inputText))
                 {
                     getData();
                 }
                 else
                 {
-                    Toast.makeText(IDCardActivity.this, "身份证号码不正确，请检查", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PostcodeActivity.this, "邮编不正确，请检查", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-    }
-
-    private boolean isOk(String inputText)
-    {
-        if (!TextUtils.isEmpty(inputText) && !inputText.contains(" ") && (inputText.length() == 18 || inputText.length() == 15))
-        {
-            return true;
-        }
-        return false;
     }
 
     public void getData()
@@ -82,18 +74,18 @@ public class IDCardActivity extends AppCompatActivity
                 .build();
 
         //创建网络请求接口实例
-        IDCardApi request = retrofit.create(IDCardApi.class);
+        PostcodeApi request = retrofit.create(PostcodeApi.class);
 
-        String idNum = inputIDCard.getText().toString();
+        String code = inputCode.getText().toString();
 
         //RxJava实现请求
-        request.getPhone(KEY, idNum)
+        request.getPhone(KEY, code)
                 //数据通过rxjava提交先在io线程里
                 .subscribeOn(Schedulers.io())
                 //返回到主线程
                 .observeOn(AndroidSchedulers.mainThread())
                 //通过subscribe实现订阅关系
-                .subscribe(new Observer<IDCardBean>()
+                .subscribe(new Observer<PostcodeBean>()
                 {
                     @Override
                     public void onSubscribe(Disposable d)
@@ -102,36 +94,48 @@ public class IDCardActivity extends AppCompatActivity
                     }
 
                     @Override
-                    public void onNext(IDCardBean value)
+                    public void onNext(PostcodeBean value)
                     {
                         if (!"success".equals(value.getMsg()))
                         {
-                            Toast.makeText(IDCardActivity.this, "查询失败", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(PostcodeActivity.this, "查询失败", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        Log.d(TAG, "area=" + value.getResult().getArea());
+                        Log.d(TAG, "city="+value.getResult().getCity());
 
-                        String builder = value.getResult().getArea() + "\n" +
-                                value.getResult().getBirthday() + "\n" +
-                                value.getResult().getSex();
+                        StringBuilder builder = new StringBuilder();
+                        builder.append(value.getResult().getProvince() + "\n" +
+                                value.getResult().getCity() + "\n" +
+                                value.getResult().getDistrict() + "\n\n");
+
+                        for (int i = 0; i < value.getResult().getAddress().size(); i++)
+                        {
+                            builder.append(value.getResult().getAddress().get(i) + "\n");
+                        }
+
                         showText.setText(builder);
-
                     }
 
                     @Override
                     public void onError(Throwable e)
                     {
-
                     }
 
                     @Override
                     public void onComplete()
                     {
-                    }
-                })  ;
 
+                    }
+                });
 
     }
 
-
+    private boolean isOk(String inputText)
+    {
+        if (!TextUtils.isEmpty(inputText)&&!inputText.contains(" ")&&inputText.length()==6)
+        {
+            return true;
+        }
+        return false;
+    }
 }
