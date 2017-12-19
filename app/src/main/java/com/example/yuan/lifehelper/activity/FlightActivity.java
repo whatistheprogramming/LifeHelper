@@ -2,6 +2,7 @@ package com.example.yuan.lifehelper.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -39,7 +40,9 @@ public class FlightActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flight);
 
-        setTitle("航班号查询");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        toolbar.setTitle("航班号查询");
+
         inputFlight = (EditText) findViewById(R.id.et_input_flight);
         sendFlight = (Button) findViewById(R.id.btn_queryflight);
         showText = (TextView) findViewById(R.id.show_text);

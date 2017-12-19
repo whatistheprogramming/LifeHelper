@@ -1,11 +1,18 @@
 package com.example.yuan.lifehelper.activity;
 
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.example.yuan.lifehelper.adapter.MyAdapter;
 import com.example.yuan.lifehelper.R;
@@ -38,6 +45,11 @@ public class MainActivity extends AppCompatActivity
 
     private void initView()
     {
+        //初始化toolbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("查询服务");
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
@@ -48,6 +60,30 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setAdapter(adapter);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        //加载toolbar.xml文件
+        getMenuInflater().inflate(R.menu.toolbar, menu);
+        return true;
+    }
+
+    /**
+     * 菜单的点击事件
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.about_me:
+                Toast.makeText(this, "关于我", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
 
     public void getData()
     {

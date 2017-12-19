@@ -2,6 +2,7 @@ package com.example.yuan.lifehelper.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -37,7 +38,9 @@ public class IPActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ip);
 
-        setTitle("IP查询");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        toolbar.setTitle("IP查询");
+
         inputIP = (EditText) findViewById(R.id.ed_input_ip);
         sendIP = (Button) findViewById(R.id.btn_queryip);
         showText = (TextView) findViewById(R.id.show_text);

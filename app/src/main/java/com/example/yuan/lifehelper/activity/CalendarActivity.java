@@ -2,6 +2,7 @@ package com.example.yuan.lifehelper.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
@@ -35,7 +36,8 @@ public class CalendarActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
-        setTitle("万年历");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        toolbar.setTitle("万年历");
 
         datePicker = (DatePicker) findViewById(R.id.date_picker);
         showText = (TextView) findViewById(R.id.show_text);

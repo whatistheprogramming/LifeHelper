@@ -2,6 +2,7 @@ package com.example.yuan.lifehelper.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -38,7 +39,9 @@ public class PhoneActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone);
 
-        setTitle("手机号查询");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        toolbar.setTitle("手机号查询");
+
         inputPhone = (EditText) findViewById(R.id.et_input_phone);
         sendPhone = (Button) findViewById(R.id.btn_queryphone);
         showText = (TextView) findViewById(R.id.show_text);

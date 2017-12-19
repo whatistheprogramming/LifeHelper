@@ -2,6 +2,7 @@ package com.example.yuan.lifehelper.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +38,9 @@ public class BankActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bank);
 
-        setTitle("银行卡类别查询");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        toolbar.setTitle("银行卡类别查询");
+
         inputBank = (EditText) findViewById(R.id.ed_bank);
         sendBank = (Button) findViewById(R.id.btn_querybank);
         showText = (TextView) findViewById(R.id.show_text);

@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">LifeHelper</string>
-    <string name="title_activity_main2">Main2Activity</string>
+    <string name="app_name">查询小助手</string>
+
+    <!--<string name="app_home_name">查询服务</string>-->
 </resources>
